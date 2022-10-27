@@ -1,0 +1,11 @@
+12,13c12,18
+<     srcs = ["src/main/java/com/example/Greeting.java",],
+< 	visibility = ["//src/main/java/com/example/cmdline:__pkg__"],
+---
+>     srcs = [
+> 		"src/main/java/com/example/Greeting.java",
+> 	],
+> 	visibility = [
+> 		"//src/main/java/com/example/cmdline:__pkg__",
+> 		"//fancytextmain/src/java/com/engflow/fancytext:__pkg__" // Could be something like "@fancytextmain//:__pkg__" or "@fancytextmain//:fancytext__pkg__" if I go back on the workspace path one level?
+> 	],
