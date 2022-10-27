@@ -1,0 +1,6 @@
+workspace(name = "project-runner")
+
+local_repository(
+    name = "fancytextmain",
+    path = "//fancytextmain/src/java/com/engflow/fancytext",
+)
