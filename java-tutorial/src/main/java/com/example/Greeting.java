@@ -4,7 +4,7 @@ package com.example;
 
 /*public class FancyFormatter {
 	public static void sayHiFancy() {
-		System.out.println("Why, hello there. As you can see, I'm now using the Fancy Text library.");
+		System.out.println(FancyFormatter.format("Why, hello there. As you can see, I'm now using the Fancy Text library."));
 	}
 }*/
 
