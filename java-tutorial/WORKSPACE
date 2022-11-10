@@ -1,6 +1,8 @@
 workspace(name = "project-runner")
+load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 
-local_repository(
-    name = "fancytextmain",
-    path = "//fancytextmain/src/java/com/engflow/fancytext",
+git_repository(
+	name = "fancy-text",
+	remote = "https://github.com/EngFlow/fancy-text",
+	commit = "f5ad393609112cc6fb51936fa0f6be943055bb3c",
 )
