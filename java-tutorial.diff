@@ -1,0 +1,107 @@
+1,8c1,8
+< load("@rules_java//java:defs.bzl", "java_binary")
+< 
+< java_binary(
+<     name = "runner",
+<     srcs = ["Runner.java"],
+<     main_class = "com.example.cmdline.Runner",
+<     deps = ["//:greeter"],
+< )
+---
+> load("@rules_java//java:defs.bzl", "java_binary")
+> 
+> java_binary(
+>     name = "runner",
+>     srcs = ["Runner.java"],
+>     main_class = "com.example.cmdline.Runner",
+>     deps = ["//:greeter", "//:fancytext"]
+> )
+\ No newline at end of file
+1,9c1,11
+< package com.example.cmdline;
+< 
+< import com.example.Greeting;
+< 
+< public class Runner {
+<     public static void main(String args[]) {
+<         Greeting.sayHi();
+<     }
+< }
+---
+> package com.example.cmdline;
+> 
+> import com.example.Greeting;
+> //import com.engflow.fancytext.FancyFormatter;
+> 
+> public class Runner {
+>     public static void main(String args[]) {
+>         //FancyFormatter.format("String");
+> 		Greeting.sayHi();
+>     }
+> }
+1,7c1,10
+< package com.example;
+< 
+< public class Greeting {
+<     public static void sayHi() {
+<         System.out.println("Hi!");
+<     }
+< }
+---
+> package com.example;
+> 
+> import com.engflow.fancytext.FancyFormatter;
+> 
+> public class Greeting {
+>     public static void sayHi() {
+> 		System.out.println(FancyFormatter.standard().format("Why, hello there. As you can see, I'm now using the Fancy Text library."));
+> 		//System.out.println("Hi!");
+>     }
+> }
+1,7c1,7
+< package com.example;
+< 
+< public class ProjectRunner {
+<     public static void main(String args[]) {
+<         Greeting.sayHi();
+<     }
+< }
+---
+> package com.example;
+> 
+> public class ProjectRunner {
+>     public static void main(String args[]) {
+>         Greeting.sayHi();
+>     }
+> }
+12,13c12,28
+<     srcs = ["src/main/java/com/example/Greeting.java",],
+< 	visibility = ["//src/main/java/com/example/cmdline:__pkg__"],
+---
+>     srcs = [
+> 		"src/main/java/com/example/Greeting.java",
+> 	],
+> 	visibility = [
+> 		"//src/main/java/com/example/cmdline:__pkg__",
+> 	],
+> 	deps = [":fancytext"],
+> )
+> 
+> java_library(
+> 	name = "fancytext",
+> 	srcs = [
+> 		"@fancy-text//src/java/com/engflow/fancytext:FancyFormatter.java",
+> 	],
+> 	visibility = [
+> 		"//src/main/java/com/example/cmdline:__pkg__",
+> 	],
+0a1,8
+> workspace(name = "project-runner")
+> load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
+> 
+> git_repository(
+> 	name = "fancy-text",
+> 	remote = "https://github.com/EngFlow/fancy-text.git",
+> 	commit = "f5ad393609112cc6fb51936fa0f6be943055bb3c",
+> )
+\ No newline at end of file
